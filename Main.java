@@ -12,10 +12,10 @@ public class Main{
         System.out.println(board[6] + board[7] + board[8]);
     }
 
-    public boolean isEmpty(int space){
+    public static boolean isEmpty(int space){
         if(board[space] == "X" || board[space] == "O")
-            return true;
-        return false;
+            return false;
+        return true;
     }
 
     static String player = "X";
@@ -25,14 +25,18 @@ public class Main{
             printBoard();
             System.out.println("where do you want to move? ");
             int userIn = input.nextInt();
-            board[userIn] = player;
-            if(player == "X"){
-                player = "O";
+            if(isEmpty(userIn)){
+                board[userIn] = player;
+                if(player == "X"){
+                    player = "O";
+                }
+                else if(player == "O"){
+                    player = "X";
+                }
+                i++;
+            }else{
+                System.out.println("space taken");
             }
-            else if(player == "O"){
-                player = "X";
-            }
-            i++;
         }
     }
 }
